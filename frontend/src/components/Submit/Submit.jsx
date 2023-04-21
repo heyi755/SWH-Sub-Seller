@@ -7,7 +7,6 @@ const Submit = () => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
-
   const handleProductCountChange = (e) => {
     const count = parseInt(e.target.value);
     if (isNaN(count) || count < 1) {
@@ -26,10 +25,7 @@ const Submit = () => {
   };
 
   const handleAddProduct = () => {
-    setProductList((prevState) => [
-      ...prevState,
-      { id: prevState.length + 1 },
-    ]);
+    setProductList((prevState) => [...prevState, { id: prevState.length + 1 }]);
     setProductCount(productCount + 1);
   };
 
@@ -43,7 +39,7 @@ const Submit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const items = productList.map((product) => {
       return {
         name: product.name,
@@ -52,25 +48,25 @@ const Submit = () => {
         unit_price: parseInt(product.unit_price) || 0,
       };
     });
-  
+
     const data = {
       seller: "heyi",
       items: items,
       start_time: e.target["start-time"].value,
       end_time: e.target["end-time"].value,
     };
-  
+
     console.log(JSON.stringify(data));
-  
+
     try {
-      const response = await fetch("http://127.0.0.1:5000/submit", {
+      const response = await fetch("http://127.0.0.1:8080/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-  
+
       if (response.ok) {
         console.log("Data has been submitted successfully");
       } else {
@@ -80,43 +76,41 @@ const Submit = () => {
       console.error("Error while submitting data", error);
     }
   };
-  
 
   return (
     <div className="submit-container">
       <form onSubmit={handleSubmit}>
         {productList.map((product, index) => (
           <div key={product.id}>
-          <h3>产品{index + 1}</h3>
-          <div className="form-group">
-            <label htmlFor={`product-${index}-name`}>名称</label>
-            <input
-              type="text"
-              id={`product-${index}-name`}
-              name="name"
-              onChange={(e) => handleProductListChange(e, index)}
-            />
+            <h3>产品{index + 1}</h3>
+            <div className="form-group">
+              <label htmlFor={`product-${index}-name`}>名称</label>
+              <input
+                type="text"
+                id={`product-${index}-name`}
+                name="name"
+                onChange={(e) => handleProductListChange(e, index)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor={`product-${index}-count`}>数量</label>
+              <input
+                type="number"
+                id={`product-${index}-count`}
+                name="quantity"
+                onChange={(e) => handleProductListChange(e, index)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor={`product-${index}-price`}>单价</label>
+              <input
+                type="number"
+                id={`product-${index}-price`}
+                name="unit_price"
+                onChange={(e) => handleProductListChange(e, index)}
+              />
+            </div>
           </div>
-          <div className="form-group">
-            <label htmlFor={`product-${index}-count`}>数量</label>
-            <input
-              type="number"
-              id={`product-${index}-count`}
-              name="quantity"
-              onChange={(e) => handleProductListChange(e, index)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor={`product-${index}-price`}>单价</label>
-            <input
-              type="number"
-              id={`product-${index}-price`}
-              name="unit_price"
-              onChange={(e) => handleProductListChange(e, index)}
-            />
-          </div>
-        </div>
-        
         ))}
         <div className="form-group">
           <button type="button" onClick={handleAddProduct}>
@@ -154,7 +148,6 @@ const Submit = () => {
       </form>
     </div>
   );
-  
 };
 
 export default Submit;

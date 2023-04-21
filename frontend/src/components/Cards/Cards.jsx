@@ -15,7 +15,7 @@ const Cards = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:5000/api/cards-data-values"
+          "http://127.0.0.1:8080/api/cards-data-values"
         );
         setCardsDataValues(response.data);
         console.log(response.data);
