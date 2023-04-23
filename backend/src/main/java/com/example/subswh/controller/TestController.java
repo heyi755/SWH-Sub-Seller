@@ -1,6 +1,7 @@
 package com.example.subswh.controller;
 
 import com.example.subswh.config.KafkaConsumerService;
+import com.example.subswh.config.KafkaProducer;
 import com.example.subswh.util.RedisUtil;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,6 +33,9 @@ public class TestController {
     @Resource
     private KafkaConsumerService kafkaConsumerService;
 
+    @Resource
+    private KafkaProducer kafkaProducer;
+
     @GetMapping("/api/updates-data")
     public Object getUpdatesData() {
         List<String> messages = kafkaConsumerService.getMessages();
@@ -50,6 +54,12 @@ public class TestController {
     }
 
 
+    @GetMapping("/api/insert-data")
+    public String test01(){
+        kafkaProducer.sendMessage("test", "hello world");
+        System.out.println("send message success");
+        return "true";
+    }
 
 
     @GetMapping("/api/cards-data-values")

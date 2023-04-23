@@ -1,5 +1,6 @@
 package com.example.subswh.config;
 
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +23,6 @@ public class KafkaConsumerService {
         messages.clear();
         return result;
     }
+
+
 }
