@@ -10,5 +10,6 @@ import com.example.subswh.pojo.Orders;
  */
 public interface OrdersService extends IService<Orders> {
     boolean addOrder(Orders orders);
+    Orders getOrderById(String orderId);
 
 }

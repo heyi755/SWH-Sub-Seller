@@ -3,6 +3,8 @@ package com.example.subswh.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.subswh.pojo.OrderItems;
 
+import java.util.List;
+
 /**
  * @author HeYi
  * @version 1.0
@@ -11,5 +13,7 @@ import com.example.subswh.pojo.OrderItems;
 public interface OrderItemsService extends IService<OrderItems> {
 
     boolean addOrderItems(OrderItems orderItems);
+
+    List<OrderItems> getOrderItemsByOrderId(String order_id);
 
 }

@@ -24,7 +24,7 @@ export default function BasicTable() {
 
   useEffect(() => {
     const fetchTableData = async () => {
-      const data = await fetchData("http://127.0.0.1:8080/api/table-data");
+      const data = await fetchData("http://127.0.0.1:8000/api/table-data");
       setTableData(data);
     };
 

@@ -3,6 +3,7 @@ package com.example.subswh.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.subswh.pojo.Orders;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author HeYi
@@ -11,4 +12,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface OrdersMapper extends BaseMapper<Orders> {
+
+    @Select("SELECT * FROM orders WHERE order_id = #{orderId}")
+    Orders selectById(String orderId);
+
 }

@@ -36,30 +36,40 @@ public class TestController {
     @Resource
     private KafkaProducer kafkaProducer;
 
+//    @GetMapping("/api/updates-data")
+//    public Object getUpdatesData() {
+//        List<String> messages = kafkaConsumerService.getMessages();
+//        List<Map<String, Object>> updatesData = new ArrayList<>();
+//        for (String message : messages) {
+//            try {
+//                JSONObject jsonMessage = new JSONObject(message);
+//                String name = jsonMessage.getString("name");
+//                String noti = jsonMessage.getString("noti");
+//                updatesData.add(Map.of("id", System.currentTimeMillis(), "name", name, "noti", noti));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return updatesData;
+//    }
+
     @GetMapping("/api/updates-data")
     public Object getUpdatesData() {
-        List<String> messages = kafkaConsumerService.getMessages();
-        List<Map<String, Object>> updatesData = new ArrayList<>();
-        for (String message : messages) {
-            try {
-                JSONObject jsonMessage = new JSONObject(message);
-                String name = jsonMessage.getString("name");
-                String noti = jsonMessage.getString("noti");
-                updatesData.add(Map.of("id", System.currentTimeMillis(), "name", name, "noti", noti));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return updatesData;
+        return List.of(
+                Map.of("id", 1, "name", "仓库管理员", "noti", "您的货物存储时间即将到期，请及时续费"),
+                Map.of("id", 2, "name", "仓库系统", "noti", "您的货物已经被分配至相关货架"),
+                Map.of("id", 3, "name", "货运负责人", "noti", "司机已经就绪，可以开始装运")
+        );
     }
 
 
-    @GetMapping("/api/insert-data")
-    public String test01(){
-        kafkaProducer.sendMessage("test", "hello world");
-        System.out.println("send message success");
-        return "true";
-    }
+
+//    @GetMapping("/api/insert-data")
+//    public String test01(){
+//        kafkaProducer.sendMessage("test", "hello world");
+//        System.out.println("send message success");
+//        return "true";
+//    }
 
 
     @GetMapping("/api/cards-data-values")

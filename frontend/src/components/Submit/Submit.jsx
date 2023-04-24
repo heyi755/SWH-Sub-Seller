@@ -50,7 +50,7 @@ const Submit = () => {
     });
 
     const data = {
-      seller: "heyi",
+      seller: "20301038",
       items: items,
       start_time: e.target["start-time"].value,
       end_time: e.target["end-time"].value,
@@ -59,7 +59,7 @@ const Submit = () => {
     console.log(JSON.stringify(data));
 
     try {
-      const response = await fetch("http://127.0.0.1:8080/submit", {
+      const response = await fetch("http://127.0.0.1:8000/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

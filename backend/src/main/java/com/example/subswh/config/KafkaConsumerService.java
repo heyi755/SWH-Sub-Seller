@@ -12,11 +12,11 @@ public class KafkaConsumerService {
 
     private List<String> messages = new ArrayList<>();
 
-    @KafkaListener(topics = "test")
-    public void consume(String message) {
-        System.out.println("Consumed message: " + message);
-        messages.add(message);
-    }
+//    @KafkaListener(topics = "test")
+//    public void consume(String message) {
+//        System.out.println("Consumed message: " + message);
+//        messages.add(message);
+//    }
 
     public List<String> getMessages() {
         List<String> result = new ArrayList<>(messages);

@@ -22,4 +22,11 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     public boolean addOrder(Orders orders) {
         return ordersMapper.insert(orders) > 0;
     }
+
+    @Override
+    public Orders getOrderById(String orderId) {
+        return ordersMapper.selectById(orderId);
+    }
+
+
 }
